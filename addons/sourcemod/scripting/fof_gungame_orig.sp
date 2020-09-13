@@ -1,4 +1,4 @@
-#pragma semicolon 1
+ #pragma semicolon 1
 
 #include <sourcemod>
 #include <sdktools>
@@ -403,7 +403,7 @@ public Event_PlayerDeath( Handle:hEvent, const String:szEventName[], bool:bDontB
         LeaderCheck();
 
         PrintCenterTextAll("%N was humiliated by %N and lost a level!", iVictim, iKiller);
-        PrintToConsoleAll( "%N was humiliated by %N and lost a level!", iVictim, iKiller);
+        PrintConsoleToAll( "%N was humiliated by %N and lost a level!", iVictim, iKiller);
         PrintToChat( iVictim, "%sHumiliating death! You are now level %d of %d.", CHAT_PREFIX, iPlayerLevel[iVictim], iMaxLevel );
         EmitSoundToClient( iVictim, SOUND_HUMILIATION );
         EmitSoundToClient( iKiller, SOUND_HUMILIATION );
@@ -508,7 +508,7 @@ public Event_PlayerDeath( Handle:hEvent, const String:szEventName[], bool:bDontB
         LeaderCheck( false );
 
         PrintCenterTextAll( "%N is on the final weapon!", iKiller );
-        PrintToConsoleAll( "%sPlayer '%N' is on the final weapon!", CONSOLE_PREFIX, iKiller );
+        PrintConsoleToAll( "%sPlayer '%N' is on the final weapon!", CONSOLE_PREFIX, iKiller );
         EmitSoundToClient( iKiller, SOUND_FINAL );
     }
     else
@@ -1148,7 +1148,7 @@ stock LeaderCheck( bool:bShowMessage = true )
             {
                 EmitSoundToClient( i, SOUND_TIEDLEAD, .flags = SND_CHANGEPITCH, .pitch = 115);
                 if( bShowMessage )
-                    PrintToConsoleAll( "%s'%N' is also in the lead (level %d)", CONSOLE_PREFIX, i, iPlayerLevel[i] );
+                    PrintConsoleToAll( "%s'%N' is also in the lead (level %d)", CONSOLE_PREFIX, i, iPlayerLevel[i] );
             }
             else if( bInTheLead[i] && iOldLeader != iLeader && iLeader == i )
             {
@@ -1156,7 +1156,7 @@ stock LeaderCheck( bool:bShowMessage = true )
                 if( bShowMessage )
                 {
                     PrintCenterTextAll( "%N is in the lead", i, iPlayerLevel[i] );
-                    PrintToConsoleAll( "%s'%N' is in the lead (level %d)", CONSOLE_PREFIX, i, iPlayerLevel[i] );
+                    PrintConsoleToAll( "%s'%N' is in the lead (level %d)", CONSOLE_PREFIX, i, iPlayerLevel[i] );
                 }
             }
             else if( !bInTheLead[i] && bWasInTheLead[i] )
@@ -1196,7 +1196,7 @@ stock WriteLog( const String:szFormat[], any:... )
 #endif
 }
 
-stock PrintToConsoleAll( const String:szFormat[], any:... )
+stock PrintConsoleToAll( const String:szFormat[], any:... )
     if( szFormat[0] != '\0' )
 {
     decl String:szBuffer[1024];
